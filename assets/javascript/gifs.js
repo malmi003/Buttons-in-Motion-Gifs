@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     $(document).on("click", ".motionButton", function () {
         let searchTerm = $(this).html();
-        let queryURL = "http://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=PZhhehJAvEFYvravJsugGkyEsNLpBElg&limit=10";
+        let queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=PZhhehJAvEFYvravJsugGkyEsNLpBElg&limit=10";
 
         $.ajax({
             url: queryURL,
