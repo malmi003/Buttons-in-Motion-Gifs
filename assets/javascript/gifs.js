@@ -6,7 +6,7 @@
 */
 
 
-let motionArray = ["swimming", "running", "jumping", "kicking", "screaming", "skipping", "dancing", "catching", "chasing", "following", "falling"];
+let motionArray = ["swim", "run", "jump", "kick", "pat", "skip", "dance", "catch", "chase", "fall", "trip"];
 //for each of my array.length create button with class of motionButton
 
 
@@ -15,7 +15,7 @@ $(document).ready(function () {
     //put default btns on page
     motionArray.forEach(function (item) {
         let newButton = $("<button>");
-        newButton.addClass("motionButton");
+        newButton.addClass("motionButton btn btn-primary m-1");
         newButton.html(item);
         $("#whereTheButtonsGo").append(newButton);
 
@@ -23,9 +23,9 @@ $(document).ready(function () {
 
     //adds new button onclick submit btn
     $("#searchBtn").on("click", function () {
-        let searchText = $("#searchText").val();
+        let searchText = $("#searchText").val().trim();
         let newButton = $("<button>");
-        newButton.addClass("motionButton");
+        newButton.addClass("motionButton btn btn-primary m-1");
         newButton.html(searchText);
         $("#whereTheButtonsGo").append(newButton);
     })
@@ -42,33 +42,34 @@ $(document).ready(function () {
             for (let i = 0; i < results.length; i++) {
                 let newDiv = $("<div>");
                 let newP = $("<p>");
-                newP.html("Rating: " + results[i].rating)
+                newP.html("Rating: " + results[i].rating);
+
                 let newImg = $("<img>");
                 newImg.attr("animate-src", results[i].images.fixed_height.url);
                 newImg.attr("still-src", results[i].images.fixed_height_still.url);
                 newImg.attr("data-state", "still");
                 newImg.addClass("gif");
                 newImg.attr("src", results[i].images.fixed_height_still.url);
-                $("#whereTheImagesGo div").prepend(newImg);
-                $("#whereTheImagesGo div").prepend(newP);
+
+                newDiv.append(newP);
+                newDiv.append(newImg);
                 $("#whereTheImagesGo").prepend(newDiv);
-                
-                
             }
-
-            $(".gif").on("click", function () {
-                let state = $(this).attr("data-state");
-                if (state === "still") {
-                    let animateSrc = $(this).attr("animate-src")
-                    $(this).attr("src", animateSrc)
-                    $(this).attr("data-state", "animate");
-                } else if (state === "animate") {
-                    let stillSrc = $(this).attr("still-src")
-                    $(this).attr("src", stillSrc)
-                    $(this).attr("data-state", "still");
-                }
-            })
-
         })
+    }) 
+    
+        $(document).on("click", ".gif", function () {
+        let state = $(this).attr("data-state");
+
+        if (state === "still") {
+            let animateSrc = $(this).attr("animate-src");
+            $(this).attr("src", animateSrc);
+            $(this).attr("data-state", "animate");
+
+        } else if (state === "animate") {
+            let stillSrc = $(this).attr("still-src");
+            $(this).attr("src", stillSrc);
+            $(this).attr("data-state", "still");
+        }
     })
 });
