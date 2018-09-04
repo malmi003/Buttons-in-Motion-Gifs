@@ -1,6 +1,6 @@
 # Gifs in Motion
 
-## Objective & How to Play
+## Objective
 This app uses the Gif API to bring in Gifs related to motion. Utilize the default motion buttons to bring in related gifs or write in your own. The gifs come in as still images. Click on them to get them moving. 
 
 ## Specifications
